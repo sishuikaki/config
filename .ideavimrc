@@ -1,0 +1,289 @@
+"  Source your .vimrc
+source ~/.vimrc
+
+let mapleader = " " " 设置leader键
+
+Plug 'machakann/vim-highlightedyank' " 高亮复制的内容
+Plug 'tpope/vim-commentary' " 普通模式gcc注释，可视模式gc注释，gcu取消注释
+Plug 'preservim/nerdtree' " 项目树插件
+Plug 'tpope/vim-surround' " vim-surround插件
+Plug 'vim-matchit' " 更好的括号匹配
+Plug 'dbakker/vim-paragraph-motion' " 更好的段落移动: {, }
+Plug 'kana/vim-textobj-entire' " 将整个文件作为一个文本对象: ie, ae
+
+set scrolloff=10 " 设置在光标距离窗口顶部或底部一定行数时，开始滚动屏幕内容的行为
+set incsearch " 启用增量搜索功能
+set ignorecase " 在搜索时忽略大小写
+set smartcase " 如果搜索内容有大写，则区分大小写
+set hlsearch " 将搜索匹配的文本高亮显示
+set number " 设置行号
+set sneak " IdeaVim-Sneak插件
+set ideajoin " IdeaVim 智能联接, Shift+J
+set multicursor " IdeaVim 多光标
+set matchit " 更智能的匹配跳转，%跳转到匹配的括号
+set ideamarks " 映射vim标记到IdeaVim标记
+set argtextobj " 更方便的修改参数: aa, ia
+set textobj-indent " 更方便的修改代码块: ai, ii, aI, iI
+set easymotion " 启用IdeaVim-EasyMotion
+
+" " 普通模式下使用回车键，向下/向上 增加一行
+" nmap <CR> o<Esc>
+" nmap <S-Enter> O<Esc>
+
+" " 取消搜索高亮
+" noremap <C-h> :nohl<CR>
+" inoremap <C-h> :nohl<CR>
+
+" ctrl+c/v 复制/粘贴
+noremap <C-c> "+y
+inoremap <C-v> <C-r>+
+cnoremap <C-v> <C-r>+
+
+" 在普通和插入模式下，向下交换行/向上交换行
+nnoremap <C-j> :m +1<CR>
+xnoremap <C-k> :m '<-2<cr>gv=gv
+nnoremap <C-k> :m -2<CR>
+inoremap <C-j> <Esc> :m +1<CR>gi
+inoremap <C-k> <Esc> :m -2<CR>gi
+xnoremap <C-j> :m '>+1<cr>gv=gv
+
+
+" 将 jj 和 jk 映射为 <Esc>
+imap jj <Esc>
+imap kk <Esc>
+imap jk <Esc>
+imap kj <Esc>
+
+" 与bash一样，使用 Ctrl + a 和 Ctrl + e 移动到硬行首和行尾
+" cnoremap <C-a> <Home>
+" cnoremap <C-e> <End>
+" nnoremap <C-a> <Home>
+" nnoremap <C-e> <End>
+" vnoremap <C-a> <Home>
+" vnoremap <C-e> <End>
+" inoremap <C-a> <Home>
+" inoremap <C-e> <End>
+
+" " H为行首，L为行尾，M为括号匹配
+" nmap H ^
+" vmap H ^
+" nmap L $
+" vmap L $
+" nmap M %
+" vmap M %
+
+let g:WhichKeyDesc_GotoNextError = "ge 跳转到下一个错误或警告"
+nmap ge <action>(GotoNextError)
+let g:WhichKeyDesc_GotoPreviousError = "gE 跳转到上一个错误或警告"
+nmap gE <action>(GotoPreviousError)
+let g:WhichKeyDesc_GotoTest = "gt 在源代码和测试代码之间快速切换"
+nmap gt <action>(GotoTest)
+let g:WhichKeyDesc_MethodDown = "gm 将光标移动到下一个方法的声明处"
+nmap gm <action>(MethodDown)
+let g:WhichKeyDesc_MethodUp = "gM 将光标移动到上一个方法的声明处"
+nmap gM <action>(MethodUp)
+let g:WhichKeyDesc_GotoImplementation = "gi 跳转到实现"
+nmap gi <action>(GotoImplementation)
+let g:WhichKeyDesc_QuickImplementations = "gq 快速预览实现"
+nmap gq <action>(QuickImplementations)
+let g:WhichKeyDesc_GotoDeclaration = "gd 跳转到声明"
+nmap gd <action>(GotoDeclaration)
+let g:WhichKeyDesc_GotoFile = "gf 跳转到文件"
+nmap gf <action>(GotoFile)
+
+let g:WhichKeyDesc_bookmark = "ma 切换书签"
+nmap ma <action>(ToggleBookmark)
+
+" 切换标签页
+nmap E <action>(NextTab)
+nmap Q <action>(PreviousTab)
+
+" ctrl + s 保存文档
+nmap <C-S> <action>(SaveAll)
+imap <C-S> <Esc><action>(SaveAll)
+
+
+set which-key
+set notimeout
+
+let g:WhichKeyDesc_LeaderKeymap= "<leader> 🌟🌟🌟紫色为二级目录🌟🌟🌟"
+
+let g:WhichKeyDesc_CodeAndClose = "<leader>c Code&关闭"
+let g:WhichKeyDesc_CodeAndClose_CodeCompletion = "<leader>cc 代码自动补全"
+nmap <leader>cc <action>(CodeCompletion)
+let g:WhichKeyDesc_CodeAndClose_CloseAllEditorsButActive = "<leader>co 关闭其他标签页"
+nmap <leader>co <action>(CloseAllEditorsButActive)
+
+let g:WhichKeyDesc_DeBugOrDelete= "<leader>d 调试&删除"
+let g:WhichKeyDesc_DebugOrDelete_BreakPoint = "<leader>dp 打断点/解除断点 "
+nmap <leader>dp <Action>(ToggleLineBreakpoint)
+let g:WhichKeyDesc_DebugOrDelete_DeBug = "<leader>db 调试"
+nmap <leader>db <Action>(Debug)
+let g:WhichKeyDesc_DebugOrDelete_DeleteAndCopyToClipboard = "<leader>dd 删除并复制到剪切板"
+vmap <leader>dd "+d
+
+let g:WhichKeyDesc_ExplorerOrExtract = "<leader>e 资源管理器&提取"
+nmap <leader>e <action>(RevealIn)
+" 将选中的代码片段提取为一个独立的方法(Ctrl + Alt + M)
+let g:WhichKeyDesc_ExplorerOrExtract_ExtractMethod = "<leader>em 提取方法"
+vmap <leader>em <action>(ExtractMethod)
+" （引入常量）的重构操作:将选中的代码片段抽取为一个常量，并自动替换选中的代码片段为新的常量引用(Ctrl + Alt + C)
+let g:WhichKeyDesc_ExplorerOrExtract_IntroduceConstant = "<leader>ec 引入常量"
+vmap <leader>ec <action>(IntroduceConstant)
+" （引入字段）的重构操作:将选中的代码片段转化为一个新的字段，并自动将选中的代码片段替换为对该字段的引用(Ctrl + Alt + F)
+let g:WhichKeyDesc_ExplorerOrExtract_IntroduceField = "<leader>ef 引入字段"
+vmap <leader>ef <action>(IntroduceField)
+" （引入变量）的重构操作:将选中的代码片段抽取为一个新的变量，并自动替换选中的代码片段为新的变量引用(Ctrl + Alt + V)
+let g:WhichKeyDesc_ExplorerOrExtract_IntroduceVariable = "<leader>ev 引入变量"
+vmap <leader>ev <action>(IntroduceVariable)
+
+let g:WhichKeyDesc_FindOrFormat = "<leader>f 查找&格式化"
+" let g:WhichKeyDesc_FindOrFormat_FindFile = "<leader>ff 查找文件"
+" nmap <leader>ff <action>(GotoFile)
+let g:WhichKeyDesc_FindOrFormat_FindFileLocation = "<leader>fl 定位文件位置"
+nmap <leader>fl <action>(SelectInProjectView)
+let g:WhichKeyDesc_FindOrFormat_FindText = "<leader>ft 全局查找"
+nmap <leader>ft <action>(FindInPath)
+let g:WhichKeyDesc_FindOrFormat_Commands = "<leader>fc 打开Action菜单"
+nmap <leader>fa <action>(GotoAction)
+let g:WhichKeyDesc_FindOrFormat_Format = "<leader>fm 格式化代码并优化导入"
+nmap <leader>fm <action>(ReformatCode) \| <action>(OptimizeImports)
+
+let g:WhichKeyDesc_GitOrGenerate = "<leader>g Git&构造"
+let g:WhichKeyDesc_GitOrGenerate_RollbackHunk = "<leader>gr git回滚"
+nmap <leader>gr <action>(Vcs.RollbackChangedLines)
+let g:WhichKeyDesc_GitOrGenerate_GenerateConstructor = "<leader>gn 生成..."
+nmap <leader>gn <action>(Generate)
+let g:WhichKeyDesc_GitOrGenerate_GenerateConstructor = "<leader>gc 生成构造器"
+nmap <leader>gc <action>(GenerateConstructor)
+let g:WhichKeyDesc_GitOrGenerate_GenerateGetter = "<leader>gg 生成getter"
+nmap <leader>gg <action>(GenerateGetter)
+let g:WhichKeyDesc_GitOrGenerate_GenerateSetter = "<leader>gs 生成setter"
+nmap <leader>gs <action>(GenerateSetter)
+let g:WhichKeyDesc_GitOrGenerate_GenerateGetterAndSetter = "<leader>ga 生成setter和getter"
+nmap <leader>ga <action>(GenerateGetterAndSetter)
+let g:WhichKeyDesc_GitOrGenerate_GenerateEquals = "<leader>ge 生成equals和hashcode的重写"
+nmap <leader>ge <action>(GenerateEquals)
+let g:WhichKeyDesc_GitOrGenerate_GenerateToString = "<leader>gt 生成toString"
+nmap <leader>gt <action>(Actions.ActionsPlugin.GenerateToString)
+let g:WhichKeyDesc_DebugOrDelete_ShowTabbedFileHistory = "<leader>gh 显示文件的版本控制历史"
+nmap <leader>gh <action>(Vcs.ShowTabbedFileHistory)
+
+let g:WhichKeyDesc_Show_MoveToLeft = "<leader>h 向左跳转"
+nmap <leader>h <c-w>h
+let g:WhichKeyDesc_Show_MoveToDown = "<leader>j 向下跳转"
+nmap <leader>j <c-w>j
+let g:WhichKeyDesc_Show_MoveToUp = "<leader>k 向上跳转"
+nmap <leader>k <c-w>k
+let g:WhichKeyDesc_Show_MoveToRight = "<leader>l 向右跳转"
+nmap <leader>l <c-w>l
+
+let g:WhichKeyDesc_InsertAfterBrackets = "<leader>i 在下一个(位置插入"
+nmap <leader>i f(a
+" let g:WhichKeyDesc_NERDTreeOrNew_InsertLiveTemplate = "<leader>nt 插入模板"
+" nmap <leader>nt <action>(InsertLiveTemplate)
+
+let g:WhichKeyDesc_CodeGlance = "<leader>m 开关小地图"
+nmap <leader>m <action>(CodeGlancePro.toggle)
+
+let g:WhichKeyDesc_NERDTreeOrNew = "<leader>n 目录树&新建"
+let g:WhichKeyDesc_NERDTreeOrNew_NewDir = "<leader>nd 新建文件夹"
+nmap <leader>nd <action>(NewDir)
+let g:WhichKeyDesc_NERDTreeOrNew_NewClass = "<leader>nc 新建.Class"
+nmap <leader>nc <action>(NewClass)
+let g:WhichKeyDesc_NERDTreeOrNew_NewFile = "<leader>nf 新建文件"
+nmap <leader>nf <action>(NewFile)
+
+
+let g:WhichKeyDesc_PasteClipboardDown = "<leader>p 从剪切板粘贴到下面行"
+nmap <leader>p "+p
+let g:WhichKeyDesc_PasteClipboardUp = "<leader>P 从剪切板粘贴到上面行"
+nmap <leader>P "+P
+let g:WhichKeyDesc_PasteClipboardDown = "<leader>p 从剪切板粘贴到下面行"
+vmap <leader>p "+p
+let g:WhichKeyDesc_PasteClipboardUp = "<leader>P 从剪切板粘贴到上面行"
+vmap <leader>P "+P
+
+let g:WhichKeyDesc_RunOrRe = "<leader>r 运行&重构"
+let g:WhichKeyDesc_RunOrRe_RunClass = "<leader>rc 运行当前文件"
+nmap <leader>rc <action>(RunClass)
+let g:WhichKeyDesc_RunOrRe_ReRun = "<leader>rr 重新运行"
+nmap <leader>rr <action>(Rerun)
+let g:WhichKeyDesc_RunOrRe_Run = "<leader>ru 运行"
+map <leader>ru <action>(Run)
+let g:WhichKeyDesc_RunOrRe_ReRunTests = "<leader>rt 重新运行Test"
+nmap <leader>rt <action>(RerunTests)
+let g:WhichKeyDesc_RunOrRe_Stop = "<leader>rs 停止运行"
+nmap <leader>rs <action>(Stop)
+let g:WhichKeyDesc_RunOrRe_RenameElement = "<leader>re 重命名元素"
+map <leader>re <action>(RenameElement)
+let g:WhichKeyDesc_RunOrRe_RenameFile = "<leader>rn 重命名文件"
+map <leader>rn <action>(RenameFile)
+let g:WhichKeyDesc_RunOrRe_RefactoringMenu = "<leader>rf 重构菜单"
+map <leader>rf <action>(RefactoringMenu)
+
+
+let g:WhichKeyDesc_Show = "<leader>s 显示&关闭"
+let g:WhichKeyDesc_Show_FileStructure = "<leader>ss 显示文件结构"
+nmap <leader>ss <action>(FileStructurePopup)
+let g:WhichKeyDesc_Show_TypeHierarchy = "<leader>sh 显示继承关系"
+nmap <leader>sh <action>(TypeHierarchy)
+let g:WhichKeyDesc_Show_Bookmarks = "<leader>sb 显示书签工具窗口"
+nmap <leader>sb <action>(ShowBookmarks)
+let g:WhichKeyDesc_Show_ParameterInfo = "<leader>sp 显示方法或函数的参数信息"
+nmap <leader>sp <action>(ParameterInfo)
+
+let g:WhichKeyDesc_Terminal = "<leader>t 打开终端"
+nmap <leader>t <action>(ActivateTerminalToolWindow)
+
+let g:WhichKeyDesc_Windows = "<leader>w 窗口"
+let g:WhichKeyDesc_Windows_HideActiveWindow = "<leader>ww 关闭提示窗口"
+nmap <leader>ww <action>(HideActiveWindow)
+let g:WhichKeyDesc_Windows_Move_MoveTabRight = "<leader>wl 向右拆分标签页"
+nmap <leader>wl <action>(MoveTabRight)
+let g:WhichKeyDesc_Windows_Move_MoveTabDown = "<leader>wj 向下拆分标签页"
+nmap <leader>wj <action>(MoveTabDown)
+let g:WhichKeyDesc_Windows_Move_MoveEditorToOppositeTabGroup = "<leader>wo 在另一边打开"
+nmap <leader>wo <action>(MoveEditorToOppositeTabGroup)
+let g:WhichKeyDesc_Windows_Move_SplitVertically = "<leader>wc 向右复制标签页"
+nmap <leader>wc <action>(SplitVertically)
+let g:WhichKeyDesc_Windows_UnsplitAll = "<leader>wa 取消所有分割窗口"
+nmap <leader>wa <action>(UnsplitAll)
+let g:WhichKeyDesc_Windows_closeActiveWindow = "<leader>wc 关闭当前分割窗口"
+nmap <leader>wc <c-w>c
+let g:WhichKeyDesc_Windows_Unsplit = "<leader>wu 取消拆分当前分割窗口"
+nmap <leader>wu <action>(Unsplit)
+
+let g:WhichKeyDesc_CopyClipboard = "<leader>y 复制到剪切板"
+vmap <leader>y "+y
+let g:WhichKeyDesc_CopyClipboard= "<leader>y 复制到剪切板"
+nmap <leader>y "+yy
+
+" 折叠/展开折叠只需要按zc/zo/zC/zO
+let g:WhichKeyDesc_Zip = "<leader>z 折叠"
+let g:WhichKeyDesc_Zip_unZipAll = "<leader>zo 展开所有折叠"
+nmap <leader>zo <action>(ExpandAllRegions)
+let g:WhichKeyDesc_Zip_ZipAll = "<leader>zc 折叠所有代码"
+nmap <leader>zc <action>(CollapseAllRegions)
+
+"<C-w-w>：在多个打开的编辑器窗口之间切换
+"在目录中，按下 go 打开文件并保持光标在目录
+"在目录中，按下 gi 以上下并排窗口形式打开文件(并关闭目录)
+"在目录树中，使用空格预览文件
+"光标在目录时，按Esc回到编辑器
+"编辑器和目录间切换存在许多功能类似的快捷键，相似但不完全相同
+"仅 打开/关闭 目录推荐使用<leader>wo 其次 Alt + 1
+let g:WhichKeyDesc_NERDTreeOrNo_NERDTreeFocus = "<leader>nn 转移到目录树"
+nnoremap <leader>nn :NERDTreeFocus<CR>
+" 按下 <C-t> 将切换 NERDTree 文件资源管理器的显示状态，即打开或关闭 NERDTree(不建议)
+nnoremap <C-t> :NERDTreeToggle<CR>
+
+" EasyMotion，其中s, w, l 使用KJump，而不是AceJump
+let g:WhichKeyDesc_EasyMotionKey = "<leader><leader> easymotion"
+let g:WhichKeyDesc_EasyMotionKey_s = "<leader><leader>s 跳转到字符"
+nmap <leader><leader>s <action>(KJumpAction)
+let g:WhichKeyDesc_EasyMotionKey_w = "<leader><leader>w 跳转到词首"
+nmap <leader><leader>w <action>(KJumpAction.Word0)
+let g:WhichKeyDesc_EasyMotionKey_l = "<leader><leader>l 跳转到行首"
+nmap <leader><leader>l <action>(KJumpAction.Line)
+let g:EasyMotion_override_acejump = 0

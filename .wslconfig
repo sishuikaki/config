@@ -1,0 +1,12 @@
+[wsl2]
+ipv6=true # 启用 IPv6
+autoProxy=true
+networkingMode=mirrored
+dnsTunneling=true
+firewall=false
+
+
+[experimental]
+bestEffortDnsParsing=true
+useWindowsDnsCache=true
+
