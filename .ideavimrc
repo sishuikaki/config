@@ -106,7 +106,7 @@ imap <C-S> <Esc><action>(SaveAll)
 set which-key
 set notimeout
 
-let g:WhichKeyDesc_LeaderKeymap= "<leader> 🌟🌟🌟紫色为二级目录🌟🌟🌟"
+let g:WhichKeyDesc_LeaderKeymap= "<leader>"
 
 let g:WhichKeyDesc_CodeAndClose = "<leader>c Code&关闭"
 let g:WhichKeyDesc_CodeAndClose_CodeCompletion = "<leader>cc 代码自动补全"
